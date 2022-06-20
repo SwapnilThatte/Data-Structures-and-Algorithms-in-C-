@@ -1,0 +1,30 @@
+Node *zeroOneTwoSort(Node *&head) {
+    if (head == NULL or head->next == NULL) {
+        return head ;
+    }
+    Node *zeroHead = NULL ;
+    Node *oneHead = NULL ;
+    Node *twoHead = NULL ;
+
+    Node *temp = head ;
+    while (temp != NULL) {
+        if (temp->data == 0) {
+            insert(zeroHead, 0) ;
+        }
+        if (temp->data == 1) {
+            insert(oneHead, 1) ;
+        }
+        if (temp->data == 2) {
+            insert(twoHead, 2) ;
+        }
+        temp = temp->next ;
+    }
+
+    Node *zeroTail = getTail(zeroHead) ;
+    zeroTail->next = oneHead ;
+    Node *oneTail = getTail(oneHead) ;
+    oneTail->next = twoHead ;
+
+    head = zeroHead ;
+    return head ;
+}
